@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RotateLoading">
+        <attr name="loading_width" format="dimension"/>
+        <attr name="loading_color" format="color"/>
+        <attr name="loading_degree" format="integer"/>
+        <attr name="loading_duration" format="integer"/>
+    </declare-styleable>
+</resources>
