@@ -1,5 +1,6 @@
 package com.victor.loading;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -38,6 +39,8 @@ public class RotateLoading extends View {
 
     private int shadowPosition;
 
+    private boolean isStart = false;
+
     public RotateLoading(Context context) {
         super(context);
         initView(context, null);
@@ -75,24 +78,6 @@ public class RotateLoading extends View {
     }
 
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        playAnimator();
-    }
-
-    private void playAnimator() {
-        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(this, "scaleX", 0.0f, 1);
-        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(this, "scaleY", 0.0f, 1);
-        scaleXAnimator.setDuration(300);
-        scaleXAnimator.setInterpolator(new LinearInterpolator());
-        scaleYAnimator.setDuration(300);
-        scaleYAnimator.setInterpolator(new LinearInterpolator());
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(scaleXAnimator, scaleYAnimator);
-        animatorSet.start();
-    }
-
-    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
@@ -107,13 +92,8 @@ public class RotateLoading extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        topDegree += 10;
-        bottomDegree += 10;
-        if (topDegree > 360) {
-            topDegree = topDegree - 360;
-        }
-        if (bottomDegree > 360) {
-            bottomDegree = bottomDegree - 360;
+        if (!isStart) {
+            return;
         }
 
         mPaint.setColor(Color.parseColor("#1a000000"));
@@ -123,6 +103,15 @@ public class RotateLoading extends View {
         mPaint.setColor(Color.WHITE);
         canvas.drawArc(loadingRectF, topDegree, arc, false, mPaint);
         canvas.drawArc(loadingRectF, bottomDegree, arc, false, mPaint);
+
+        topDegree += 10;
+        bottomDegree += 10;
+        if (topDegree > 360) {
+            topDegree = topDegree - 360;
+        }
+        if (bottomDegree > 360) {
+            bottomDegree = bottomDegree - 360;
+        }
 
         if (changeBigger) {
             if (arc < 160) {
@@ -139,6 +128,66 @@ public class RotateLoading extends View {
             changeBigger = !changeBigger;
             invalidate();
         }
+    }
+
+    public void start() {
+        startAnimator();
+        isStart = true;
+        invalidate();
+    }
+
+    public void stop() {
+        stopAnimator();
+        invalidate();
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    private void startAnimator() {
+        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(this, "scaleX", 0.0f, 1);
+        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(this, "scaleY", 0.0f, 1);
+        scaleXAnimator.setDuration(300);
+        scaleXAnimator.setInterpolator(new LinearInterpolator());
+        scaleYAnimator.setDuration(300);
+        scaleYAnimator.setInterpolator(new LinearInterpolator());
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleXAnimator, scaleYAnimator);
+        animatorSet.start();
+    }
+
+    private void stopAnimator() {
+        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(this, "scaleX", 1, 0);
+        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(this, "scaleY", 1, 0);
+        scaleXAnimator.setDuration(300);
+        scaleXAnimator.setInterpolator(new LinearInterpolator());
+        scaleYAnimator.setDuration(300);
+        scaleYAnimator.setInterpolator(new LinearInterpolator());
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleXAnimator, scaleYAnimator);
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                isStart = false;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animatorSet.start();
     }
 
 

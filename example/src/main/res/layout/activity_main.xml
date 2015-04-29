@@ -11,9 +11,20 @@
                 tools:context=".MainActivity">
 
     <com.victor.loading.RotateLoading
+        android:id="@+id/rotateloading"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:loading_width="5dp"
         android:layout_centerInParent="true"/>
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Start"
+        />
 
 </RelativeLayout>
