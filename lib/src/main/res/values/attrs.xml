@@ -3,7 +3,6 @@
     <declare-styleable name="RotateLoading">
         <attr name="loading_width" format="dimension"/>
         <attr name="loading_color" format="color"/>
-        <attr name="loading_degree" format="integer"/>
-        <attr name="loading_duration" format="integer"/>
+        <attr name="shadow_position" format="integer"/>
     </declare-styleable>
 </resources>

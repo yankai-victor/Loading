@@ -1,6 +1,5 @@
 package com.victor.loading;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -9,37 +8,35 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
-import java.lang.ref.WeakReference;
-
 /**
+ * RotateLoading
  * Created by Victor on 2015/4/28.
  */
 public class RotateLoading extends View {
 
-    private static final int DEFAULT_DEGREE = 360 * 4;
-    private static final int DEFAULT_DURATION = 3000;
-    private static final int DEFAULT_WIDTH = 5;
+    private static final int DEFAULT_WIDTH = 6;
+    private static final int DEFAULT_SHADOW_POSITION = 2;
 
     private Paint mPaint;
 
-    private int arc;
+    private RectF loadingRectF;
+    private RectF shadowRectF;
+
+    private int topDegree = 10;
+    private int bottomDegree = 190;
+
+    private float arc;
 
     private int width;
 
-    private int degree = DEFAULT_DEGREE;
-    private int duration = DEFAULT_DURATION;
-
     private boolean changeBigger = true;
 
-    private MyHandler mHandler;
+    private int shadowPosition;
 
     public RotateLoading(Context context) {
         super(context);
@@ -57,17 +54,15 @@ public class RotateLoading extends View {
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        mHandler = new MyHandler(this);
-
         int color = Color.WHITE;
         width = dpToPx(context, DEFAULT_WIDTH);
+        shadowPosition = dpToPx(getContext(), DEFAULT_SHADOW_POSITION);
 
         if (null != attrs) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RotateLoading);
             color = typedArray.getColor(R.styleable.RotateLoading_loading_color, Color.WHITE);
             width = typedArray.getDimensionPixelSize(R.styleable.RotateLoading_loading_width, dpToPx(context, DEFAULT_WIDTH));
-            degree = typedArray.getInt(R.styleable.RotateLoading_loading_degree, DEFAULT_DEGREE);
-            duration = typedArray.getInt(R.styleable.RotateLoading_loading_duration, DEFAULT_DURATION);
+            shadowPosition = typedArray.getInt(R.styleable.RotateLoading_shadow_position, DEFAULT_SHADOW_POSITION);
             typedArray.recycle();
         }
 
@@ -92,93 +87,63 @@ public class RotateLoading extends View {
         scaleXAnimator.setInterpolator(new LinearInterpolator());
         scaleYAnimator.setDuration(300);
         scaleYAnimator.setInterpolator(new LinearInterpolator());
-        ObjectAnimator rotationAnimator = ObjectAnimator.ofFloat(this, "rotation", 0.0f, degree);
-        rotationAnimator.setRepeatCount(-1);
-        rotationAnimator.setRepeatMode(Animation.INFINITE);
-        rotationAnimator.setDuration(duration);
-        rotationAnimator.setInterpolator(new LinearInterpolator());
-        rotationAnimator.addListener(new Animator.AnimatorListener() {
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                changeBigger = !changeBigger;
-                invalidate();
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-        });
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(scaleXAnimator, scaleYAnimator, rotationAnimator);
+        animatorSet.playTogether(scaleXAnimator, scaleYAnimator);
         animatorSet.start();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        int centerX = w / 2;
-        int centerY = h / 2;
+
         arc = 10;
-        rectF = new RectF(2 * width, 2 * width, centerX * 2 - 2 * width, centerY * 2 - 2 * width);
+
+        loadingRectF = new RectF(2 * width, 2 * width, w - 2 * width, h - 2 * width);
+        shadowRectF = new RectF(2 * width + shadowPosition, 2 * width + shadowPosition, w - 2 * width + shadowPosition, h - 2 * width + shadowPosition);
     }
 
-    RectF rectF;
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawArc(rectF, 10, arc, false, mPaint);
-        canvas.drawArc(rectF, 190, arc, false, mPaint);
+
+        topDegree += 10;
+        bottomDegree += 10;
+        if (topDegree > 360) {
+            topDegree = topDegree - 360;
+        }
+        if (bottomDegree > 360) {
+            bottomDegree = bottomDegree - 360;
+        }
+
+        mPaint.setColor(Color.parseColor("#1a000000"));
+        canvas.drawArc(shadowRectF, topDegree, arc, false, mPaint);
+        canvas.drawArc(shadowRectF, bottomDegree, arc, false, mPaint);
+
+        mPaint.setColor(Color.WHITE);
+        canvas.drawArc(loadingRectF, topDegree, arc, false, mPaint);
+        canvas.drawArc(loadingRectF, bottomDegree, arc, false, mPaint);
+
         if (changeBigger) {
             if (arc < 160) {
-                arc += 5;
-                sendMessage();
+                arc += 2.5;
+                invalidate();
             }
         } else {
             if (arc > 10) {
                 arc -= 5;
-                sendMessage();
+                invalidate();
             }
+        }
+        if (arc == 160 || arc == 10) {
+            changeBigger = !changeBigger;
+            invalidate();
         }
     }
 
-    private void sendMessage() {
-        Message msg = mHandler.obtainMessage();
-        mHandler.sendMessageDelayed(msg, 20);
-    }
 
     public int dpToPx(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.getResources().getDisplayMetrics());
     }
-
-
-    private static class MyHandler extends Handler {
-
-        private WeakReference<View> weakReference;
-
-        public MyHandler(View view) {
-            weakReference = new WeakReference<View>(view);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            View view = weakReference.get();
-            if (null != view) {
-                view.invalidate();
-            }
-        }
-
-    }
-
 
 }

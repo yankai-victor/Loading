@@ -13,7 +13,7 @@
     <com.victor.loading.RotateLoading
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:loading_width="4dp"
+        app:loading_width="5dp"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
