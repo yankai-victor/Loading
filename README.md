@@ -5,7 +5,10 @@ RotateLoading is a nice progressbar.
 Supported on API Level 11 and above.
 
 The idea was inspired by this gif.
+
 ![](./images/loading.gif)
+
+And the effect is here.
 
 ![ScreenShot](./images/RotateLoading.gif)
 
