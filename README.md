@@ -6,7 +6,7 @@ Yan can see the wiki for more detail.
 
 [RotateLoading](https://github.com/yankai-victor/Loading/wiki/RotateLoading)
 
-[BookLoading](https://github.com/yankai-victor/Loading/wiki/RotateLoading)
+[BookLoading](https://github.com/yankai-victor/Loading/wiki/BookLoading)
 
 
 License
