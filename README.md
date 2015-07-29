@@ -1,31 +1,11 @@
 Loading
 ================
-RotateLoading is a nice progressbar.
+Loading is a poject with kinds of Android loading view.
 
-Supported on API Level 11 and above.
+Yan can see the wiki for more detail.
 
-The idea was inspired by this gif.
-
-![](./images/loading.gif)
-
-And the effect is here.
-
-![ScreenShot](./images/RotateLoading.gif)
-
-Usage
-====
-Add RingButton to your xml.
-```
-  <com.victor.loading.RotateLoading
-        android:id="@+id/rotateloading"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:loading_width="5dp"
-        android:layout_centerInParent="true"/>
-
-```
-When startAnimator() is called, the view of loading will show.
-When stopAnimator() is called, the view of loading will disappear.
+[RotateLoading](https://github.com/yankai-victor/Loading/wiki/RotateLoading)
+[BookLoading](https://github.com/yankai-victor/Loading/wiki/RotateLoading)
 
 
 License

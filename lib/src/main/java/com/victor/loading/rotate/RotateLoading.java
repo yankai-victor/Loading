@@ -1,4 +1,4 @@
-package com.victor.loading;
+package com.victor.loading.rotate;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import com.victor.loading.R;
 
 /**
  * RotateLoading

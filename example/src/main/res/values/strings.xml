@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Loading</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="title_activity_book">BookActivity</string>
+    <string name="title_activity_rotate">RotateActivity</string>
 
 </resources>

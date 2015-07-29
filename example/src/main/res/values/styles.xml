@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
-    <!-- Customize your theme here. -->
+        <!-- Customize your theme here. -->
     </style>
 
 </resources>

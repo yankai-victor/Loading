@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/book_padding"
+    android:background="@color/book_loading_background">
+
+    <com.victor.loading.book.BookView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
