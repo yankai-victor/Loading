@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="book_loading_background">#ffffff</color>
-    <color name="book_loading_book">#1e79e8</color>
+    <color name="book_loading_book">#ff33b5e5</color>
     <color name="book_loading_page">#ffffff</color>
 
 </resources>

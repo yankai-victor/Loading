@@ -22,7 +22,9 @@
         <activity
             android:name=".BookActivity"
             android:label="@string/title_activity_book" />
-
+        <activity
+            android:name=".NewtonCradleActivity"
+            android:label="@string/title_activity_newton_cradle"></activity>
     </application>
 
 </manifest>

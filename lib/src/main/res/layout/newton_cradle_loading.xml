@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.victor.loading.newton.CradleBall
+        android:id="@+id/ball_one"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp" />
+
+    <com.victor.loading.newton.CradleBall
+        android:id="@+id/ball_two"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center" />
+
+    <com.victor.loading.newton.CradleBall
+        android:id="@+id/ball_three"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center" />
+
+    <com.victor.loading.newton.CradleBall
+        android:id="@+id/ball_four"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center" />
+
+    <com.victor.loading.newton.CradleBall
+        android:id="@+id/ball_five"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="50dp" />
+</LinearLayout>

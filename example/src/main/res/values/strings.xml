@@ -6,5 +6,9 @@
     <string name="stop">Stop</string>
     <string name="title_activity_book">BookActivity</string>
     <string name="title_activity_rotate">RotateActivity</string>
+    <string name="title_activity_newton_cradle">NewtonCradleActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
