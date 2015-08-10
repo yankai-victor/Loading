@@ -13,6 +13,11 @@ Yan can see the wiki for more detail.
 
 ![BookLoading](https://github.com/yankai-victor/Loading/blob/master/images/BookLoading.gif)
 
+[NewtonCradleLoading](https://github.com/yankai-victor/Loading/wiki/NewtonCradleLoading)
+
+![NewtonCradleLoading](https://github.com/yankai-victor/Loading/blob/master/images/NewtonCradleLoading.gif)
+
+
 License
 =======
 Copyright 2015 yankai-victor
