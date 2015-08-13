@@ -2,6 +2,7 @@ package com.victor.loading.newton;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
@@ -24,9 +25,11 @@ public class NewtonCradleLoading extends LinearLayout {
     private CradleBall cradleBallFour;
     private CradleBall cradleBallFive;
 
-    private static final int DURATION = 500;
+    private static final int DURATION = 400;
     private static final int SHAKE_DISTANCE = 2;
-    private static final int PIVOT_Y = -30;
+    private static final float PIVOT_X = 0.5f;
+    private static final float PIVOT_Y = -3f;
+    private static final int DEGREE = 30;
 
 
     private boolean isStart = false;
@@ -63,13 +66,13 @@ public class NewtonCradleLoading extends LinearLayout {
     }
 
     RotateAnimation rotateLeftAnimation;//cradleBallOne left to right
-    RotateAnimation rotateRightAnimation;//cradleBallOne right to left
+    RotateAnimation rotateRightAnimation;//cradleBallFive right to left
     TranslateAnimation shakeLeftAnimation;
     TranslateAnimation shakeRightAnimation;
 
 
     private void initAnim() {
-        rotateRightAnimation = new RotateAnimation(0, -90, 0, PIVOT_Y);
+        rotateRightAnimation = new RotateAnimation(0, -DEGREE, RotateAnimation.RELATIVE_TO_SELF, PIVOT_X, RotateAnimation.RELATIVE_TO_SELF, PIVOT_Y);
         rotateRightAnimation.setRepeatCount(1);
         rotateRightAnimation.setRepeatMode(Animation.REVERSE);
         rotateRightAnimation.setDuration(DURATION);
@@ -94,7 +97,7 @@ public class NewtonCradleLoading extends LinearLayout {
         shakeLeftAnimation.setDuration(DURATION);
         shakeLeftAnimation.setInterpolator(new CycleInterpolator(2));
 
-        rotateLeftAnimation = new RotateAnimation(0, 90, 0, PIVOT_Y);
+        rotateLeftAnimation = new RotateAnimation(0, DEGREE, RotateAnimation.RELATIVE_TO_SELF, PIVOT_X, RotateAnimation.RELATIVE_TO_SELF, PIVOT_Y);
         rotateLeftAnimation.setRepeatCount(1);
         rotateLeftAnimation.setRepeatMode(Animation.REVERSE);
         rotateLeftAnimation.setDuration(DURATION);
@@ -173,5 +176,9 @@ public class NewtonCradleLoading extends LinearLayout {
 
     public boolean isStart() {
         return isStart;
+    }
+
+    public int dpToPx(Context context, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.getResources().getDisplayMetrics());
     }
 }
