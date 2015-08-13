@@ -2,7 +2,6 @@ package com.victor.loading.newton;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
@@ -176,9 +175,5 @@ public class NewtonCradleLoading extends LinearLayout {
 
     public boolean isStart() {
         return isStart;
-    }
-
-    public int dpToPx(Context context, float dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpVal, context.getResources().getDisplayMetrics());
     }
 }
