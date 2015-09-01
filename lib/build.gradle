@@ -3,12 +3,13 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
+    resourcePrefix "loading"
 
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -21,3 +22,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+//apply from: "../bintrayUpload.gradle"

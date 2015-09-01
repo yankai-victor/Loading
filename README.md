@@ -18,6 +18,15 @@ Yan can see the wiki for more detail.
 ![NewtonCradleLoading](https://github.com/yankai-victor/Loading/blob/master/images/NewtonCradleLoading.gif)
 
 
+Usage
+=======
+gradle
+
+```
+compile 'com.victor:lib:1.0.0'
+```
+
+
 License
 =======
 Copyright 2015 yankai-victor
