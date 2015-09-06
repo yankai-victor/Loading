@@ -43,6 +43,8 @@ public class RotateLoading extends View {
 
     private boolean isStart = false;
 
+    private int color;
+
     public RotateLoading(Context context) {
         super(context);
         initView(context, null);
@@ -59,7 +61,7 @@ public class RotateLoading extends View {
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        int color = Color.WHITE;
+        color = Color.WHITE;
         width = dpToPx(context, DEFAULT_WIDTH);
         shadowPosition = dpToPx(getContext(), DEFAULT_SHADOW_POSITION);
 
@@ -102,7 +104,7 @@ public class RotateLoading extends View {
         canvas.drawArc(shadowRectF, topDegree, arc, false, mPaint);
         canvas.drawArc(shadowRectF, bottomDegree, arc, false, mPaint);
 
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(color);
         canvas.drawArc(loadingRectF, topDegree, arc, false, mPaint);
         canvas.drawArc(loadingRectF, bottomDegree, arc, false, mPaint);
 
