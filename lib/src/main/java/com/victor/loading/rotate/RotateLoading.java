@@ -24,6 +24,7 @@ public class RotateLoading extends View {
 
     private static final int DEFAULT_WIDTH = 6;
     private static final int DEFAULT_SHADOW_POSITION = 2;
+    private static final int DEFAULT_SPEED_OF_DEGREE = 10;
 
     private Paint mPaint;
 
@@ -44,6 +45,10 @@ public class RotateLoading extends View {
     private boolean isStart = false;
 
     private int color;
+
+    private int speedOfDegree;
+
+    private float speedOfArc;
 
     public RotateLoading(Context context) {
         super(context);
@@ -70,9 +75,10 @@ public class RotateLoading extends View {
             color = typedArray.getColor(R.styleable.RotateLoading_loading_color, Color.WHITE);
             width = typedArray.getDimensionPixelSize(R.styleable.RotateLoading_loading_width, dpToPx(context, DEFAULT_WIDTH));
             shadowPosition = typedArray.getInt(R.styleable.RotateLoading_shadow_position, DEFAULT_SHADOW_POSITION);
+            speedOfDegree = typedArray.getInt(R.styleable.RotateLoading_loading_speed, DEFAULT_SPEED_OF_DEGREE);
             typedArray.recycle();
         }
-
+        speedOfArc = speedOfDegree / 4;
         mPaint = new Paint();
         mPaint.setColor(color);
         mPaint.setAntiAlias(true);
@@ -108,8 +114,8 @@ public class RotateLoading extends View {
         canvas.drawArc(loadingRectF, topDegree, arc, false, mPaint);
         canvas.drawArc(loadingRectF, bottomDegree, arc, false, mPaint);
 
-        topDegree += 10;
-        bottomDegree += 10;
+        topDegree += speedOfDegree;
+        bottomDegree += speedOfDegree;
         if (topDegree > 360) {
             topDegree = topDegree - 360;
         }
@@ -119,16 +125,16 @@ public class RotateLoading extends View {
 
         if (changeBigger) {
             if (arc < 160) {
-                arc += 2.5;
+                arc += speedOfArc;
                 invalidate();
             }
         } else {
-            if (arc > 10) {
-                arc -= 5;
+            if (arc > speedOfDegree) {
+                arc -= 2 * speedOfArc;
                 invalidate();
             }
         }
-        if (arc == 160 || arc == 10) {
+        if (arc >= 160 || arc <= 10) {
             changeBigger = !changeBigger;
             invalidate();
         }
