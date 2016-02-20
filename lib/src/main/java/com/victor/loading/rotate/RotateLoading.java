@@ -140,6 +140,14 @@ public class RotateLoading extends View {
         }
     }
 
+    public void setLoadingColor(int color) {
+        this.color = color;
+    }
+
+    public int getLoadingColor() {
+        return color;
+    }
+
     public void start() {
         startAnimator();
         isStart = true;

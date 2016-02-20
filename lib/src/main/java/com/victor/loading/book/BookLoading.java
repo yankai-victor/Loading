@@ -53,7 +53,7 @@ public class BookLoading extends FrameLayout {
     private void initView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.book_loading, this, true);
         pageViews = new ArrayList<>();
-        bookHandler=new BookHandler(this);
+        bookHandler = new BookHandler(this);
     }
 
     @Override
@@ -129,38 +129,38 @@ public class BookLoading extends FrameLayout {
 
     }
 
-    public void start(){
-        isStart=true;
+    public void start() {
+        isStart = true;
         bookHandler.obtainMessage().sendToTarget();
     }
 
-    public void stop(){
-        isStart=false;
+    public void stop() {
+        isStart = false;
         bookHandler.removeCallbacks(null);
         bookHandler.removeCallbacksAndMessages(null);
     }
 
-    public boolean isStart(){
+    public boolean isStart() {
         return isStart;
     }
 
-    static class BookHandler extends Handler{
+    static class BookHandler extends Handler {
         private WeakReference<BookLoading> weakReference;
 
-        public BookHandler(BookLoading bookLoading){
-            weakReference=new WeakReference<>(bookLoading);
+        public BookHandler(BookLoading bookLoading) {
+            weakReference = new WeakReference<>(bookLoading);
         }
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            BookLoading bookLoading=weakReference.get();
-            if (null==bookLoading)
+            BookLoading bookLoading = weakReference.get();
+            if (null == bookLoading)
                 return;
             bookLoading.playAnim();
 
-            Message message=obtainMessage();
-            sendMessageDelayed(message,DURATION*5);
+            Message message = obtainMessage();
+            sendMessageDelayed(message, DURATION * 5);
         }
     }
 }

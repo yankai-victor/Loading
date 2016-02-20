@@ -6,4 +6,8 @@
         <attr name="shadow_position" format="integer" />
         <attr name="loading_speed" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="CradleBall">
+        <attr name="cradle_ball_color" format="color" />
+    </declare-styleable>
 </resources>

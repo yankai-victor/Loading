@@ -1,11 +1,14 @@
 package com.victor.loading.newton;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.victor.loading.R;
 
 /**
  * @author Yan
@@ -18,24 +21,31 @@ public class CradleBall extends View {
 
     private Paint paint;
 
+    private int loadingColor = Color.WHITE;
+
     public CradleBall(Context context) {
         super(context);
-        initView();
+        initView(null);
     }
 
     public CradleBall(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView();
+        initView(attrs);
     }
 
     public CradleBall(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
+        initView(attrs);
     }
 
-    private void initView() {
+    private void initView(AttributeSet attrs) {
+        if (null != attrs) {
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CradleBall);
+            loadingColor = typedArray.getColor(R.styleable.CradleBall_cradle_ball_color, Color.WHITE);
+            typedArray.recycle();
+        }
         paint = new Paint();
-        paint.setColor(Color.WHITE);
+        paint.setColor(loadingColor);
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
     }
@@ -52,5 +62,15 @@ public class CradleBall extends View {
         super.onDraw(canvas);
 
         canvas.drawCircle(width / 2, height / 2, width / 2, paint);
+    }
+
+    public void setLoadingColor(int color) {
+        loadingColor = color;
+        paint.setColor(color);
+        postInvalidate();
+    }
+
+    public int getLoadingColor() {
+        return loadingColor;
     }
 }

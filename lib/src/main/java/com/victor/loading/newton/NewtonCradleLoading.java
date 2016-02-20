@@ -176,4 +176,12 @@ public class NewtonCradleLoading extends LinearLayout {
     public boolean isStart() {
         return isStart;
     }
+
+    public void setLoadingColor(int color) {
+        cradleBallOne.setLoadingColor(color);
+        cradleBallTwo.setLoadingColor(color);
+        cradleBallThree.setLoadingColor(color);
+        cradleBallFour.setLoadingColor(color);
+        cradleBallFive.setLoadingColor(color);
+    }
 }
