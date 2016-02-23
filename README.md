@@ -23,7 +23,7 @@ Usage
 gradle
 
 ```
-compile 'com.victor:lib:1.0.3'
+compile 'com.victor:lib:1.0.4'
 ```
 
 
