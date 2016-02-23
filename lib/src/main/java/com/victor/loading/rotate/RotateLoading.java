@@ -69,6 +69,7 @@ public class RotateLoading extends View {
         color = Color.WHITE;
         width = dpToPx(context, DEFAULT_WIDTH);
         shadowPosition = dpToPx(getContext(), DEFAULT_SHADOW_POSITION);
+        speedOfDegree = DEFAULT_SPEED_OF_DEGREE;
 
         if (null != attrs) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RotateLoading);
