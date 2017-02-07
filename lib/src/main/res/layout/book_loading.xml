@@ -7,5 +7,6 @@
 
     <com.victor.loading.book.BookView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/book_loading_page" />
 </FrameLayout>
