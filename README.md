@@ -25,7 +25,7 @@ gradle
 ```
 compile 'com.victor:lib:1.0.4'
 ```
-Xamarin.Adnroid binding version [here](https://github.com/g0rdan/Xamarin.Android.LoadingViews)
+Xamarin.Android binding version [here](https://github.com/g0rdan/Xamarin.Android.LoadingViews)
 
 License
 =======
