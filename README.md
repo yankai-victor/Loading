@@ -23,7 +23,7 @@ Usage
 gradle
 
 ```
-compile 'com.victor:lib:1.0.4'
+implementation 'com.victor:lib:1.0.4'
 ```
 Xamarin.Android binding version [here](https://github.com/g0rdan/Xamarin.Android.LoadingViews)
 
