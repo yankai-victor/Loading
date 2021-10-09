@@ -1,4 +1,4 @@
-Loading
+Loading:-
 ================
 Loading is a poject with kinds of Android loading view.
 
